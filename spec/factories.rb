@@ -1,6 +1,13 @@
+require 'faker'
+
 FactoryGirl.define do
   factory :user do
-    email 'test@example.com'
-    password 'f4k3p455w0rd'
+    email { Faker::Internet.email }
+    password { Faker::Internet.password }
   end
+  
+  factory :borrower do
+    title { Faker::Company.name }
+  end
+  
 end

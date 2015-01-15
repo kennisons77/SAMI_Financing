@@ -52,10 +52,10 @@ group :development do
 end
 
 group :test do
-  gem 'warden', '~> 1.2.3'
   gem "factory_girl_rails", "~> 4.0"
   gem 'capybara', '~> 2.4.4'
   #bundle exec guard to run
   gem 'guard-rspec', '~> 4.5.0'
   gem 'wdm', '>= 0.1.0'
+  gem 'faker', '~> 1.4.3'  
 end

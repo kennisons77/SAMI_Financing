@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  resources :borrowers
+
   get 'pages/opportunities'
 
   get 'pages/allocation_report'
