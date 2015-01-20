@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113210446) do
+ActiveRecord::Schema.define(version: 20150116190313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,25 @@ ActiveRecord::Schema.define(version: 20150113210446) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "deals", force: true do |t|
+    t.string   "collateral"
+    t.string   "term"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "targets", force: true do |t|
+    t.decimal  "amount",      precision: 15, scale: 2
+    t.decimal  "fulfilled",   precision: 15, scale: 2
+    t.integer  "borrower_id"
+    t.integer  "deal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "targets", ["borrower_id"], name: "index_targets_on_borrower_id", using: :btree
+  add_index "targets", ["deal_id"], name: "index_targets_on_deal_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false

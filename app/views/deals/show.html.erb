@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Collateral:</strong>
+  <%= @deal.collateral %>
+</p>
+
+<p>
+  <strong>Term:</strong>
+  <%= @deal.term %>
+</p>
+
+<%= link_to 'Edit', edit_deal_path(@deal) %> |
+<%= link_to 'Back', deals_path %>

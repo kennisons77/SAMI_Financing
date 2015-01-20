@@ -13,17 +13,17 @@ rails g scaffold Borrower title:string
 
 rails g scaffold Lender title:string account:integer 
 
-rails g scaffold Signer lender_id:integer first:string last:string email:string active:boolean
+rails g scaffold Signer lender:references first:string last:string email:string active:boolean
 
-rails g scaffold Deal collateral:string term:string yield:decimal{8,2}
+rails g scaffold Deal collateral:string term:string  
 
-rails g scaffold Target deal_id:integer allocation:decimal{15,2}
+rails g scaffold Target amount:decimal fulfilled:decimal borrower:references deal:references
 
-rails g scaffold Agreement lender_id:integer target_id:integer target:decimal{15,2} allocation:decimal{15,2}
+rails g scaffold Agreement amount:decimal yield:decimal fulfilled:decimal lender:references target:references 
 
-rails g scaffold Trade agreement_id:integer settlement_date:datetime 
+rails g scaffold Trade settlement_date:datetime agreement:references
 
-rails g scaffold Document deal_id:integer type:string title:string url:string 
+rails g scaffold Document deal:references type:string title:string url:string 
 
 Controllers
 rails g controller Pages opportunities allocation_report

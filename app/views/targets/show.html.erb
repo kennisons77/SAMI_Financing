@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @target.amount %>
+</p>
+
+<p>
+  <strong>Fulfilled:</strong>
+  <%= @target.fulfilled %>
+</p>
+
+<p>
+  <strong>Borrower:</strong>
+  <%= @target.borrower %>
+</p>
+
+<p>
+  <strong>Deal:</strong>
+  <%= @target.deal %>
+</p>
+
+<%= link_to 'Edit', edit_target_path(@target) %> |
+<%= link_to 'Back', targets_path %>
