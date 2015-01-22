@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150116190313) do
+ActiveRecord::Schema.define(version: 20150120200151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,11 +27,12 @@ ActiveRecord::Schema.define(version: 20150116190313) do
     t.string   "term"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",     default: true, null: false
   end
 
   create_table "targets", force: true do |t|
-    t.decimal  "amount",      precision: 15, scale: 2
-    t.decimal  "fulfilled",   precision: 15, scale: 2
+    t.decimal  "amount",      precision: 15, scale: 2, null: false
+    t.decimal  "yield",       precision: 7,  scale: 2, null: false
     t.integer  "borrower_id"
     t.integer  "deal_id"
     t.datetime "created_at"

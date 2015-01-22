@@ -4,7 +4,7 @@ RSpec.describe "targets/show", :type => :view do
   before(:each) do
     @target = assign(:target, Target.create!(
       :amount => "9.99",
-      :fulfilled => "9.99",
+      :yield => "9.99",
       :borrower => nil,
       :deal => nil
     ))

@@ -1,20 +1,13 @@
 Rails.application.routes.draw do
   
-  
-  resources :targets
-
   resources :deals
 
   resources :borrowers do
-    member do 
       resources :targets
-    end
   end
 
   resources :deals do
-    member do 
       resources :targets
-    end
   end
   
  resources :targets

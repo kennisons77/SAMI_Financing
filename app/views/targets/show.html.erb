@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong>Fulfilled:</strong>
-  <%= @target.fulfilled %>
+  <strong>Yield:</strong>
+  <%= @target.yield %>
 </p>
 
 <p>
@@ -17,7 +17,7 @@
 
 <p>
   <strong>Deal:</strong>
-  <%= @target.deal %>
+  <%= @target.deal.title %>
 </p>
 
 <%= link_to 'Edit', edit_target_path(@target) %> |

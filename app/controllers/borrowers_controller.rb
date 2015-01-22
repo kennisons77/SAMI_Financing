@@ -1,20 +1,24 @@
 class BorrowersController < InheritedResources::Base
  before_action :set_borrower, only: [:show, :edit, :update, :destroy]
 
+    respond_to :html
   # GET /borrowers
   # GET /borrowers.json
   def index
     @borrowers = Borrower.all
+    respond_with(@borrowers)
   end
 
   # GET /borrowers/1
   # GET /borrowers/1.json
   def show
+    respond_with(@borrower)
   end
 
   # GET /borrowers/new
   def new
     @borrower = Borrower.new
+    respond_with(@borrower)
   end
 
   # GET /borrowers/1/edit
@@ -26,39 +30,19 @@ class BorrowersController < InheritedResources::Base
   def create
     @borrower = Borrower.new(borrower_params)
 
-    respond_to do |format|
-      if @borrower.save
-        format.html { redirect_to action: "index", notice: 'Borrower was successfully created.' }
-        format.json { render :show, status: :created, location: @borrower }
-      else
-        format.html { render :new }
-        format.json { render json: @borrower.errors, status: :unprocessable_entity }
-      end
-    end
+    respond_with(@borrower, :location => borrowers_url)
   end
 
   # PATCH/PUT /borrowers/1
   # PATCH/PUT /borrowers/1.json
   def update
-    respond_to do |format|
-      if @borrower.update(borrower_params)
-        format.html { redirect_to action: "index", notice: 'Borrower was successfully updated.' }
-        format.json { render :show, status: :ok, location: @borrower }
-      else
-        format.html { render :edit }
-        format.json { render json: @borrower.errors, status: :unprocessable_entity }
-      end
-    end
+    respond_with(@borrower, :location => borrowers_url)
   end
 
   # DELETE /borrowers/1
   # DELETE /borrowers/1.json
   def destroy
-    @borrower.destroy
-    respond_to do |format|
-      format.html { redirect_to borrowers_url, notice: 'Borrower was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+     respond_with(@borrower)
   end
 
   private

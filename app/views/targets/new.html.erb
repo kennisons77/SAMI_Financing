@@ -1,4 +1,4 @@
-<h1>New target</h1>
+<h1>New target<%= " for #{@borrower.title}" if @borrower%></h1>
 
 <%= render 'form' %>
 

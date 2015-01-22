@@ -4,7 +4,7 @@ RSpec.describe "targets/edit", :type => :view do
   before(:each) do
     @target = assign(:target, Target.create!(
       :amount => "9.99",
-      :fulfilled => "9.99",
+      :yield => "9.99",
       :borrower => nil,
       :deal => nil
     ))
@@ -17,7 +17,7 @@ RSpec.describe "targets/edit", :type => :view do
 
       assert_select "input#target_amount[name=?]", "target[amount]"
 
-      assert_select "input#target_fulfilled[name=?]", "target[fulfilled]"
+      assert_select "input#target_yield[name=?]", "target[yield]"
 
       assert_select "input#target_borrower_id[name=?]", "target[borrower_id]"
 

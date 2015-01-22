@@ -3,6 +3,6 @@
   <strong>Title:</strong>
   <%= @borrower.title %>
 </p>
-
+<%= link_to 'Create Target Duration', new_borrower_target_path(borrower) %>
 <%= link_to 'Edit', edit_borrower_path(@borrower) %> |
 <%= link_to 'Back', borrowers_path %>

@@ -1,4 +1,4 @@
-<%= form_for(@target) do |f| %>
+<%= form_for [@borrower,@target] do |f| %>
   <% if @target.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@target.errors.count, "error") %> prohibited this target from being saved:</h2>
@@ -16,16 +16,12 @@
     <%= f.text_field :amount %>
   </div>
   <div class="field">
-    <%= f.label :fulfilled %><br>
-    <%= f.text_field :fulfilled %>
-  </div>
-  <div class="field">
-    <%= f.label :borrower_id %><br>
-    <%= f.text_field :borrower_id %>
+    <%= f.label :yield %><br>
+    <%= f.text_field :yield %>
   </div>
   <div class="field">
     <%= f.label :deal_id %><br>
-    <%= f.text_field :deal_id %>
+    <%= f.collection_select( :deal_id, @deals.active, :id, :title) %>
   </div>
   <div class="actions">
     <%= f.submit %>

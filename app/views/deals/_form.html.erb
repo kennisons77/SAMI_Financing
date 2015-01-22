@@ -17,8 +17,12 @@
   </div>
   <div class="field">
     <%= f.label :term %><br>
-    <%= f.text_field :term %>
+    <%= f.select :term, Deal::TERM_LENGTHS %>
   </div>
+  <div class="field">
+    <%= f.label :active %><br>
+    <%= f.check_box :active, {}, 'true', 'false' %>
+  </div>  
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -17,9 +17,9 @@ rails g scaffold Signer lender:references first:string last:string email:string 
 
 rails g scaffold Deal collateral:string term:string  
 
-rails g scaffold Target amount:decimal fulfilled:decimal borrower:references deal:references
+rails g scaffold Target amount:decimal yield:decimal fulfilled:decimal borrower:references deal:references
 
-rails g scaffold Agreement amount:decimal yield:decimal fulfilled:decimal lender:references target:references 
+rails g scaffold Agreement amount:decimal fulfilled:decimal lender:references target:references 
 
 rails g scaffold Trade settlement_date:datetime agreement:references
 

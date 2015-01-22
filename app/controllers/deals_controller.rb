@@ -1,20 +1,25 @@
 class DealsController < ApplicationController
   before_action :set_deal, only: [:show, :edit, :update, :destroy]
 
+  respond_to :html
   # GET /deals
   # GET /deals.json
   def index
     @deals = Deal.all
+    respond_with(@deals)
   end
 
   # GET /deals/1
   # GET /deals/1.json
   def show
+    respond_with(@deal)
   end
 
   # GET /deals/new
   def new
     @deal = Deal.new
+    respond_with(@borrower,@deal)
+    
   end
 
   # GET /deals/1/edit
@@ -25,40 +30,22 @@ class DealsController < ApplicationController
   # POST /deals.json
   def create
     @deal = Deal.new(deal_params)
-
-    respond_to do |format|
-      if @deal.save
-        format.html { redirect_to action: "index", notice: 'Deal was successfully created.' }
-        format.json { render :show, status: :created, location: @deal }
-      else
-        format.html { render :new }
-        format.json { render json: @deal.errors, status: :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'Deal was successfully created.' if @deal.save   
+    respond_with(@deal, :location => deals_url)
   end
 
   # PATCH/PUT /deals/1
   # PATCH/PUT /deals/1.json
   def update
-    respond_to do |format|
-      if @deal.update(deal_params)
-        format.html { redirect_to action: "index", notice: 'Deal was successfully updated.' }
-        format.json { render :show, status: :ok, location: @deal }
-      else
-        format.html { render :edit }
-        format.json { render json: @deal.errors, status: :unprocessable_entity }
-      end
-    end
+    @deal.update(deal_params)    
+    respond_with(@deal, :location => deals_url)
   end
 
   # DELETE /deals/1
   # DELETE /deals/1.json
   def destroy
     @deal.destroy
-    respond_to do |format|
-      format.html { redirect_to deals_url, notice: 'Deal was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    respond_with(@deal)
   end
 
   private
@@ -69,6 +56,6 @@ class DealsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def deal_params
-      params.require(:deal).permit(:collateral, :term)
+      params.require(:deal).permit(:collateral, :term, :active)
     end
 end

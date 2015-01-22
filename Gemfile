@@ -42,6 +42,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 #added by me
 gem 'fiddle', '~> 0.6.3'
 gem 'devise', '~> 3.4.1'
+gem 'zurb-foundation', '~> 4.3.2'
 
 gem 'rspec-rails', '~> 3.1.0', :group => [:test, :development]
 group :development do
