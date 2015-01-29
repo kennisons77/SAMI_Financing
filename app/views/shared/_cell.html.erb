@@ -1,0 +1,12 @@
+<td>
+  <% if cell_counter == 0 %>
+    <%= link_to object.read_attribute(cell) , polymorphic_url([parent,object]) %>
+  <% elsif cell == object.class::CHILD_COL %>
+    <ul>
+      <li><%= link_to "N", new_polymorphic_url([object,cell]) %></li>      
+      <%= render(partial: "shared/link_object",:collection => object.read_attribute(cell),:locals => {:label => 'title'}) %>      
+    </ul>
+  <% else %>
+    <%= object.read_attribute(cell) -%> 
+  <% end %>
+  </td>

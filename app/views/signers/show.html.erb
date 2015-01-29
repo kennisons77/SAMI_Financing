@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lender:</strong>
+  <%= @signer.lender %>
+</p>
+
+<p>
+  <strong>First:</strong>
+  <%= @signer.first %>
+</p>
+
+<p>
+  <strong>Last:</strong>
+  <%= @signer.last %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @signer.email %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @signer.active %>
+</p>
+
+<%= link_to 'Edit', edit_signer_path(@signer) %> |
+<%= link_to 'Back', signers_path %>

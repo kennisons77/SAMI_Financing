@@ -5,6 +5,7 @@ class Deal < ActiveRecord::Base
   
   has_many :targets
   has_many :borrowers, through: :targets 
+  has_many :documents
   
   default_scope -> { order(:collateral,:term) }
   scope :active, -> { where(active: true) }

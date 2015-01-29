@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @agreement.amount %>
+</p>
+
+<p>
+  <strong>Fulfilled:</strong>
+  <%= @agreement.fulfilled %>
+</p>
+
+<p>
+  <strong>Lender:</strong>
+  <%= @agreement.lender %>
+</p>
+
+<p>
+  <strong>Target:</strong>
+  <%= @agreement.target %>
+</p>
+
+<%= link_to 'Edit', edit_agreement_path(@agreement) %> |
+<%= link_to 'Back', agreements_path %>
