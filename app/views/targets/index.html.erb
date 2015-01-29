@@ -1,4 +1,4 @@
-<h1>Listing targets<%= " for #{@borrower.title}" if @borrower%></h1>
+<h1>Listing Targets<%= " for #{@borrower.title}" if @borrower%><%= " for #{@deal.title}" if @deal%></h1>
 
 <table>
   <thead>
@@ -6,9 +6,11 @@
       <th>Amount</th>
       <th>Yield</th>
       <% unless @borrower%>
-        <th>Borrower</th>
+      <th>Borrower</th>
       <% end %>
+      <% unless @deal%>
       <th>Deal</th>
+      <% end %>      
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,9 +21,11 @@
         <td><%= target.amount %></td>
         <td><%= target.yield %></td>
         <% unless @borrower%>
-          <td><%= target.borrower.title %></td>
+        <td><%= target.borrower.title %></td>
         <% end %>
+        <% unless @deal%>        
         <td><%= target.deal.title %></td>
+        <% end %>              
         <td><%= link_to 'Show', target %></td>
         <td><%= link_to 'Edit', edit_target_path(target) %></td>
         <td><%= link_to 'Destroy', target, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -31,5 +35,8 @@
 </table>
 
 <br>
-
-<%= link_to 'New Target', new_borrower_target_path %>
+<% if @borrower %>
+  <%= link_to 'New Target', new_borrower_target_path(@borrower) %>
+<% eslif @deal%>
+  <%= link_to 'New Target', new_borrower_target_path(@deal) %>
+<% end %>

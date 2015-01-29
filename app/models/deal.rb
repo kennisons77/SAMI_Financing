@@ -6,10 +6,15 @@ class Deal < ActiveRecord::Base
   has_many :targets
   has_many :borrowers, through: :targets 
   
+  default_scope -> { order(:collateral,:term) }
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
+
+  DISPLAY_COLS = ["collateral","term","active","agreements"]
+
  
   TERM_LENGTHS = ["o/n","1 Week","1 Month"]
+  
   
   def title
     "#{collateral}.-#{term}"

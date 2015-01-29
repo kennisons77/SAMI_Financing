@@ -11,7 +11,7 @@ Objects
 
 rails g scaffold Borrower title:string
 
-rails g scaffold Lender title:string account:integer 
+rails g scaffold Lender title:string account:integer active:boolean
 
 rails g scaffold Signer lender:references first:string last:string email:string active:boolean
 
@@ -21,7 +21,7 @@ rails g scaffold Target amount:decimal yield:decimal fulfilled:decimal borrower:
 
 rails g scaffold Agreement amount:decimal fulfilled:decimal lender:references target:references 
 
-rails g scaffold Trade settlement_date:datetime agreement:references
+rails g scaffold Trade amount:decimal settlement_date:datetime agreement:references borrower:references
 
 rails g scaffold Document deal:references type:string title:string url:string 
 

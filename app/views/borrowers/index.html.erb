@@ -1,3 +1,4 @@
+
 <h1>Listing borrowers</h1>
 
 <table>
@@ -11,9 +12,8 @@
   <tbody>
     <% @borrowers.each do |borrower| %>
       <tr>
-        <td><%= borrower.title %></td>
+        <th class="left"><%= link_to borrower.title, borrower %></th>
         <td><%= link_to 'Create Target Duration', new_borrower_target_path(borrower) %></td>
-        <td><%= link_to 'Show', borrower %></td>
         <td><%= link_to 'Edit', edit_borrower_path(borrower) %></td>
         <td><%= link_to 'Destroy', borrower, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -21,6 +21,5 @@
   </tbody>
 </table>
 
-<br>
 
 <%= link_to 'New Borrower', new_borrower_path %>

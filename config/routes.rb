@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  resources :agreements
+
+  resources :signers
+
+  resources :documents
+
+  resources :lenders
+
   resources :deals
 
   resources :borrowers do

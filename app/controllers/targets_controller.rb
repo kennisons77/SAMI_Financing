@@ -1,7 +1,6 @@
 class TargetsController < ApplicationController
   before_action :set_target, only: [:show, :edit, :update, :destroy]
-  before_action :set_borrower, only: [:index, :create, :new, :destroy]
-  before_action :get_deals_dropdown, only: [:new, :edit]
+  before_action :set_parent, only: [:index, :create, :new, :destroy]
   
   respond_to :html
 
@@ -9,8 +8,17 @@ class TargetsController < ApplicationController
   # GET /targets
   # GET /targets.json
   def index
-    @targets = @borrower.targets
-    respond_with(@borrower,@targets)
+    if @borrower
+      @targets = @borrower.targets
+      respond_with(@borrower,@targets)
+    eslif @deal
+      @targets = @deal.targets
+      respond_with(@deal,@targets)
+    else
+      @targets = Target.all
+      respond_with(@targets)
+    end
+      
   end
 
   # GET /targets/1
@@ -53,15 +61,15 @@ class TargetsController < ApplicationController
   end
 
   private
-    def get_deals_dropdown
-        @deals = Deal.active    
-    end
   
-    def set_borrower
-      if @target
+    def set_parent
+      if params[:borrower_id]
+        @borrower = Borrower.find(params[:borrower_id])                
+      elsif params[:deal_id]
+        @deal = Borrower.find(params[:deal_id])                
+      elseif @target
         @borrower = Borrower.find(@target.borrower_id)
-      else
-        @borrower = Borrower.find(params[:borrower_id])        
+        @deal = Borrower.find(@target.deal_id)
       end
     end
     # Use callbacks to share common setup or constraints between actions.

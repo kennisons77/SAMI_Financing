@@ -19,10 +19,18 @@
     <%= f.label :yield %><br>
     <%= f.text_field :yield %>
   </div>
+  <% unless @borrower%>
+  <div class="field">
+    <%= f.label :borrower_id %><br>
+    <%= f.collection_select( :borrower_id, Borrower.all, :id, :title) %>
+  </div>
+  <% end %>
+  <% unless @deal%>  
   <div class="field">
     <%= f.label :deal_id %><br>
-    <%= f.collection_select( :deal_id, @deals.active, :id, :title) %>
+    <%= f.collection_select( :deal_id, Deal.active, :id, :title) %>
   </div>
+  <% end %>  
   <div class="actions">
     <%= f.submit %>
   </div>

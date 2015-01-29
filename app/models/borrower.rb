@@ -3,4 +3,6 @@ class Borrower < ActiveRecord::Base
   has_many :targets
   has_many :deals, through: :targets
   
+  DISPLAY_COLS = ["title","Active Deals"]
+
 end
