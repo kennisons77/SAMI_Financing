@@ -1,5 +1,5 @@
 class SignersController < ApplicationController
-  before_action :set_signer, only: [:show, :edit, :update, :destroy]
+    
 
   # GET /signers
   # GET /signers.json

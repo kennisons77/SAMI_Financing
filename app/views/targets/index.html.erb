@@ -37,6 +37,6 @@
 <br>
 <% if @borrower %>
   <%= link_to 'New Target', new_borrower_target_path(@borrower) %>
-<% eslif @deal%>
-  <%= link_to 'New Target', new_borrower_target_path(@deal) %>
+<% elsif @deal%>
+  <%= link_to 'New Target', new_deal_target_path(@deal) %>
 <% end %>

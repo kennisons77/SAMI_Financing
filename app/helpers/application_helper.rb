@@ -18,4 +18,6 @@ module ApplicationHelper
       return cols
     end
   end
+  
+
 end

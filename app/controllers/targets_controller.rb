@@ -1,6 +1,4 @@
 class TargetsController < ApplicationController
-  before_action :set_target, only: [:show, :edit, :update, :destroy]
-  before_action :set_parent, only: [:index, :create, :new, :destroy]
   
   respond_to :html
 
@@ -11,14 +9,13 @@ class TargetsController < ApplicationController
     if @borrower
       @targets = @borrower.targets
       respond_with(@borrower,@targets)
-    eslif @deal
+    elsif @deal
       @targets = @deal.targets
       respond_with(@deal,@targets)
     else
       @targets = Target.all
       respond_with(@targets)
-    end
-      
+    end    
   end
 
   # GET /targets/1
@@ -62,16 +59,25 @@ class TargetsController < ApplicationController
 
   private
   
-    def set_parent
-      if params[:borrower_id]
-        @borrower = Borrower.find(params[:borrower_id])                
-      elsif params[:deal_id]
-        @deal = Borrower.find(params[:deal_id])                
-      elseif @target
-        @borrower = Borrower.find(@target.borrower_id)
-        @deal = Borrower.find(@target.deal_id)
-      end
-    end
+    # def set_parent
+      # if params[:borrower_id]
+        # @borrower = Borrower.find(params[:borrower_id])
+        # add_breadcrumb "All Borrowers", 'borrowers_path'
+        # add_breadcrumb @borrower.title, "borrower_path(#{@borrower.id})"
+        # add_breadcrumb "Targets", "borrower_targets_path(#{@borrower.id})"
+#                         
+      # elsif params[:deal_id]
+        # @deal = Borrower.find(params[:deal_id])
+        # add_breadcrumb "All Deals", 'dealss_path'
+        # add_breadcrumb @deal.title, "deal_path(#{@deal.id})"        
+        # add_breadcrumb "Targets", "deal_targets_path(#{@deal.id})"
+#                 
+      # elsif @target
+        # @borrower = Borrower.find(@target.borrower_id)
+        # @deal = Borrower.find(@target.deal_id)
+        # add_breadcrumb "Targets", 'targets_path()'       
+      # end
+    # end
     # Use callbacks to share common setup or constraints between actions.
     def set_target
       @target = Target.find(params[:id])

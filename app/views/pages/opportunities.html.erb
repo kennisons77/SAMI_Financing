@@ -22,7 +22,7 @@
         <% @borrowers.each do |borrower| %>
             <td><%=number_to_percentage(borrower.targets.sum(:yield), precision: 2) %></td>
             <td><%=number_to_currency(borrower.targets.sum(:amount), precision: 0)%></td>  
-            <!--<td><input type="text"  size="4"></td>  -->
+            <td>[total]</td> 
         <% end %>
   
 </tfoot>

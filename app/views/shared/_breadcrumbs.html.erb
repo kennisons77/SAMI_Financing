@@ -1,9 +1,6 @@
     <ul class="breadcrumbs">
-    <% bread.each do |n| %>
-      <% unless n.equal? bread.last %>
-        <li><%= link_to n[:title], n[:url] %>  </li>          
-      <% else %>
-        <li><%= n[:title] %></li>
+      <% @breadcrumbs[0..-2].each do |txt, path| %>
+       <li> <%= link_to(h(txt), path) %> ></li>
       <% end %>
-    <% end %>
-    </ul>
+      <li><%= h(@breadcrumbs.last.first) %></li>
+      </ul>

@@ -1,6 +1,5 @@
 class BorrowersController < InheritedResources::Base
- before_action :set_borrower, only: [:show, :edit, :update, :destroy]
-
+ 
     respond_to :html
   # GET /borrowers
   # GET /borrowers.json

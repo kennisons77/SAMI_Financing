@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
   
  resources :targets
-
+ resources :pages
   get 'pages/opportunities'
 
   get 'pages/allocation_report'

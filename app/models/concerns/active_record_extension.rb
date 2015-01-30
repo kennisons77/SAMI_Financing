@@ -1,9 +1,7 @@
 module ActiveRecordExtension
   DISPLAY_COLS = []
   CHILD_COL = ""
-  PARENT = ""
+  PARENT = []
   
-  def get_children(child_object)
-  end
   
 end

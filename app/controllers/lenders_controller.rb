@@ -1,5 +1,4 @@
 class LendersController < ApplicationController
-  before_action :set_lender, only: [:show, :edit, :update, :destroy]
 
   # GET /lenders
   # GET /lenders.json
