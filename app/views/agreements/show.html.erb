@@ -20,5 +20,5 @@
   <%= @agreement.target %>
 </p>
 
-<%= link_to 'Edit', edit_agreement_path(@agreement) %> |
-<%= link_to 'Back', agreements_path %>
+<%= link_to 'Edit', edit_target_agreement_path(@target,@agreement) %> |
+<%= link_to 'Back', target_agreements_path(@target) %>

@@ -13,24 +13,26 @@ seed_data = [
 ],
 
 "Deal" => [
-  [ :collateral =>"SBA 7a Pools",:term => "O/N"],
-  [ :collateral =>"SBA 7a Pools",:term => "1 Week"],
-  [ :collateral =>"SBA 7a Loans",:term => "1 Month"],
-  [ :collateral =>"FH/FN Bank-eligible MBS",:term => "1 Week"],
-  [ :collateral =>"FH/FN Bank-eligible MBS",:term => "1 Month"],
-  [ :collateral =>"QM Residential Mortgage Loans",:term => "1 Month"],
-]
-"Lender"=> [
-  [:title=>"SELECT BANK & TRUST",:state=>"NC", :account=>1040676909]
-  [:title=>"FIRST NATIONAL BANK",:state=>"TX", :account=>1040676909]
-  [:title=>"LOS ALAMOS NATIONAL BANK",:state=>"NM", :account=>1040676909]
-  [:title=>"Operating Engineers",:state=>"CA", :account=>1040676909]
-  [:title=>"SCentral Bank",:state=>"TX", :account=>1040676909]
+  [ :collateral =>"SBA 7a Pools",:term => "night"],
+  [ :collateral =>"SBA 7a Pools",:term => "week"],
+  [ :collateral =>"SBA 7a Loans",:term => "month"],
+  [ :collateral =>"FH/FN Bank-eligible MBS",:term => "week"],
+  [ :collateral =>"FH/FN Bank-eligible MBS",:term => "month"],
+  [ :collateral =>"QM Residential Mortgage Loans",:term => "month"],
+],
+"Lender" => [
+  [:title=>"SELECT BANK & TRUST",:state=>"NC", :account=>1040676909],
+  [:title=>"FIRST NATIONAL BANK",:state=>"TX", :account=>1040667704],
+  [:title=>"LOS ALAMOS NATIONAL BANK",:state=>"NM", :account=>1040669301],
+  [:title=>"Operating Engineers",:state=>"CA", :account=>1040678104],
+  [:title=>"SCentral Bank",:state=>"TX", :account=>1040678300]
 ]
 
 ]
 seed_data.each do |object|
   object.each do |name, values|
-    name.capitalize.constantize.create(values)
+    unless name.capitalize.constantize.exists?
+      name.capitalize.constantize.create(values)
+    end
   end
 end

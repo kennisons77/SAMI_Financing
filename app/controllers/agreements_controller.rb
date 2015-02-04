@@ -1,9 +1,6 @@
 class AgreementsController < ApplicationController
     respond_to :html
 
-  def allocation_report
-    
-  end
 
   # GET /agreements
   # GET /agreements.json
@@ -21,6 +18,7 @@ class AgreementsController < ApplicationController
   # GET /agreements/new
   def new
     @agreement = Agreement.new
+    respond_with(@agreement)
   end
 
   # GET /agreements/1/edit
@@ -30,14 +28,16 @@ class AgreementsController < ApplicationController
   # POST /agreements
   # POST /agreements.json
   def create
-    @agreement = Agreement.new(agreement_params)
-    respond_with(@agreement)
+    @agreement = @target.agreements.new(agreement_params)
+    @agreement.save
+    respond_with(@target,@agreement)
   end
 
   # PATCH/PUT /agreements/1
   # PATCH/PUT /agreements/1.json
   def update
-    respond_with(@agreement)
+    @agreement.update(agreement_params)
+    respond_with(@target,@agreement)
   end
 
   # DELETE /agreements/1

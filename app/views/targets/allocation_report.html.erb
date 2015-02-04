@@ -1,0 +1,50 @@
+<h1>Allocation Report</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Preliminary Targeted Exposure</th>  
+      <th>Lender</th>  
+      <th>Account #</th>  
+      <th>Account Executive</th>  
+      <th>Current Allocation</th>  
+      <th>Current<br />Exposure</th>  
+      <th>New Allocation</th>  
+      <th>New Exposure</th>  
+      <th>Total Position</th>  
+      <th>% Hodlings</th>  
+      <th>Remainig Capacity</th>  
+    </tr>
+  </thead>
+  <tfoot>
+    <td><%=humanized_money_with_symbol @target.agreements.map(&:amount).sum%></td>
+    <td colspan="3">TOTALS</td>
+    <td><%=humanized_money_with_symbol @target.agreements.map(&:fulfilled).sum%></td>
+    <td><%=number_to_percentage @target.agreements.map{|a| a.exposure}.sum/@target.agreements.map{|a| a.exposure}.count, precision: 2%></td>
+    <td></td>
+    <td></td>
+    <td>[col total]</td>
+    <td></td>
+    <td><%=humanized_money_with_symbol @target.agreements.map(&:capacity).sum%></td>
+  </tfoot>
+  <tbody>
+    <% @agreements.each do |agreement|%>
+    <tr>
+      <td><%=humanized_money_with_symbol agreement.amount%></td>
+      <td><%= agreement.lender.title%></td>
+      <td><%= agreement.lender.account%></td>
+      <td></td>
+      <td><%=humanized_money_with_symbol agreement.fulfilled%></td>
+      <td><%= number_to_percentage(agreement.exposure, precision: 2)%></td>
+      <td><input type="text"  size="10"></td>
+      <td></td>
+      <td></td>
+      <td><%=number_to_percentage((agreement.amount/@target.agreements.map(&:amount).sum)*100, precision: 2) %></td>
+      <td><%=humanized_money_with_symbol agreement.capacity%></td>
+    </tr>
+    <% end%>
+  </tbody>
+</table>
+
+
+<a href"generate_emails" class="button">Generate Client Emails & Memos</a>

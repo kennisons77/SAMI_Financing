@@ -1,5 +1,5 @@
 module ActiveRecordExtension
-  DISPLAY_COLS = []
+  DISPLAY_COLS = {}
   CHILD_COL = ""
   PARENT = []
   

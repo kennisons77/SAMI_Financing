@@ -2,9 +2,11 @@ class TargetsController < ApplicationController
   
   respond_to :html
 
+  def allocation_report
+    @agreements = @target.agreements  
+ 
+  end
 
-  # GET /targets
-  # GET /targets.json
   def index
     if @borrower
       @targets = @borrower.targets

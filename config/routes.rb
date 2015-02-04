@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :targets do
+    resources :agreements
     resources :trades
   end
 
@@ -24,7 +25,7 @@ Rails.application.routes.draw do
   
   get 'pages/opportunities'
   get 'pages/allocation_report'
-
+  get 'targets/:id/report'=> "targets#allocation_report"
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

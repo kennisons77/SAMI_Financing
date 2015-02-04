@@ -1,25 +1,8 @@
 
 <h1>Listing borrowers</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @borrowers.each do |borrower| %>
-      <tr>
-        <th class="left"><%= link_to borrower.title, borrower %></th>
-        <td><%= link_to 'Create Target Duration', new_borrower_target_path(borrower) %></td>
-        <td><%= link_to 'Edit', edit_borrower_path(borrower) %></td>
-        <td><%= link_to 'Destroy', borrower, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render(
+  partial: "shared/object_list",
+  :locals => {:objects => @borrowers, :parent=>nil}) %>
 
 
 <%= link_to 'New Borrower', new_borrower_path %>

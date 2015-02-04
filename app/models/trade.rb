@@ -1,13 +1,13 @@
 class Trade < ActiveRecord::Base
   belongs_to :target
-  monetize :original_face
-  monetize :current_face
-  monetize :price
-  monetize :market_value
-  monetize :interest
-  monetize :total_mv_wac
-  monetize :margin_mv
-  monetize :cash
+  monetize :original_face_cents
+  monetize :current_face_cents
+  monetize :price_cents
+  monetize :market_value_cents
+  monetize :interest_cents
+  monetize :total_mv_wac_cents
+  monetize :margin_mv_cents
+  monetize :cash_cents
 
   #DISPLAY_COLS = [:title=>"Title"]
   CHILD_COL = ""

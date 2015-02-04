@@ -1,31 +1,9 @@
-<h1>Listing agreements</h1>
+<h1>Listing agreements for <%=@target.title if @target%></h1>
+<%= render(
+  partial: "shared/object_list",
+  :locals => {:objects => @agreements, :parent=>@target}) %> 
 
-<table>
-  <thead>
-    <tr>
-      <th>Amount</th>
-      <th>Fulfilled</th>
-      <th>Lender</th>
-      <th>Target</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @agreements.each do |agreement| %>
-      <tr>
-        <td><%= agreement.amount %></td>
-        <td><%= agreement.fulfilled %></td>
-        <td><%= agreement.lender %></td>
-        <td><%= agreement.target %></td>
-        <td><%= link_to 'Show', agreement %></td>
-        <td><%= link_to 'Edit', edit_agreement_path(agreement) %></td>
-        <td><%= link_to 'Destroy', agreement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <br>
 
-<%= link_to 'New Agreement', new_agreement_path %>
+<%= link_to 'New Agreement', new_target_agreement_path(@target) %>

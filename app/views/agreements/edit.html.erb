@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @agreement %> |
-<%= link_to 'Back', agreements_path %>
+<%= link_to 'Show', target_agreement_path(@target,@agreement) %> |
+<%= link_to 'Back', target_agreements_path(@target) %>

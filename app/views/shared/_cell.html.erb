@@ -1,18 +1,25 @@
 <% unless cell.to_s.capitalize == parent.class.name%> 
+    <% if object.has_attribute? "#{cell.to_s}_cents"%>
+      <% value = humanized_money_with_symbol object.send(cell) -%>  
+    <%elsif cell.to_s.include? "_id"%>
+      <% value = cell.to_s.split("_id")[0].capitalize.constantize.find(object.send(cell)).title %>     
+    <% else %>
+      <% value = object.send(cell) %>
+    <% end %>
   <td> 
     <% if cell_counter == 0 %>
-      <%= link_to object.send(cell) , polymorphic_url(object) %>
+      <%= link_to value, polymorphic_url([parent,object]) %>
     <% elsif cell.to_s == object.class::CHILD_COL %>
       <ul>
         <li>
           <%= link_to "N", new_polymorphic_url([object,cell]) %>
         </li>
-        <%= render(partial: "shared/link_object",:collection => object.send(cell),:locals => {:label => 'title'}) %>
+        <%= render(partial: "shared/link_object",:collection => value,:locals => {:label => 'title'}) %>
       </ul> 
     <% elsif object.class::PARENT.include? cell.to_s %>
-      <%= object.send(cell).title -%>
-    <% else %>
-    <%= object.send(cell) -%>
+      <%= value.title -%>
+    <% else%>
+      <%= value -%>
     <% end %> 
   </td>
 <% end %>

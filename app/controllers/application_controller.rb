@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   
   before_action :model_name 
   before_action :set_object, except: [:index, :create, :new]
-  before_action :set_parent, except: [:show, :edit, :update]
+  before_action :set_parent
   before_action :objects_crumb 
   before_action :object_crumb, only: :show
   before_action :edit_crumb, :only => [:edit, :update]
