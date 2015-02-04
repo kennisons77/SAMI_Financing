@@ -1,11 +1,12 @@
-<h1>Listing <%=pluralize(objects.length,objects[0].class.name)%> <%= " for #{parent.title}" unless parent.nil?%></h1>
 <% unless objects.empty?%>
 <table>
   <thead>
     <tr>
     <% unless objects.blank?  %>      
-      <% get_display_cols(objects[0]).each do |label| %>
-        <th><%= label %></th>
+      <% get_display_cols(objects[0]).map do |key, value| %>
+        <% unless value.capitalize == parent.class.name%> 
+        <th><%= value %></th>
+        <% end %>
       <% end %>
     <% end %>
       <th></th>
@@ -18,11 +19,11 @@
         <tr>          
           <%= render(
             partial:  "shared/cell",
-            collection: get_display_cols(object),
+            collection: get_display_cols(object).keys,
             locals: {:object=> object,:parent => parent }) %>              
             <td>
-              <%= link_to 'E', edit_polymorphic_url([parent,object]) %>
-              <%= link_to 'D', polymorphic_url([parent,object]), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'E', edit_polymorphic_url(object) %>
+              <%= link_to 'D', polymorphic_url(object), method: :delete, data: { confirm: 'Are you sure?' } %>
             </td>
         </tr>
       <% end %>             

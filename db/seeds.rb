@@ -20,6 +20,13 @@ seed_data = [
   [ :collateral =>"FH/FN Bank-eligible MBS",:term => "1 Month"],
   [ :collateral =>"QM Residential Mortgage Loans",:term => "1 Month"],
 ]
+"Lender"=> [
+  [:title=>"SELECT BANK & TRUST",:state=>"NC", :account=>1040676909]
+  [:title=>"FIRST NATIONAL BANK",:state=>"TX", :account=>1040676909]
+  [:title=>"LOS ALAMOS NATIONAL BANK",:state=>"NM", :account=>1040676909]
+  [:title=>"Operating Engineers",:state=>"CA", :account=>1040676909]
+  [:title=>"SCentral Bank",:state=>"TX", :account=>1040676909]
+]
 
 ]
 seed_data.each do |object|

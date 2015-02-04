@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Trade date:</strong>
+  <%= @trade.trade_date %>
+</p>
+
+<p>
+  <strong>Settlement date:</strong>
+  <%= @trade.settlement_date %>
+</p>
+
+<p>
+  <strong>Buy:</strong>
+  <%= @trade.buy %>
+</p>
+
+<p>
+  <strong>Cusip:</strong>
+  <%= @trade.cusip %>
+</p>
+
+<p>
+  <strong>Pool:</strong>
+  <%= @trade.pool %>
+</p>
+
+<p>
+  <strong>Coupon:</strong>
+  <%= @trade.coupon %>
+</p>
+
+<p>
+  <strong>Original face:</strong>
+  <%= @trade.original_face %>
+</p>
+
+<p>
+  <strong>Current face:</strong>
+  <%= @trade.current_face %>
+</p>
+
+<p>
+  <strong>Factor:</strong>
+  <%= @trade.factor %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @trade.price %>
+</p>
+
+<p>
+  <strong>Market value:</strong>
+  <%= @trade.market_value %>
+</p>
+
+<p>
+  <strong>Interest:</strong>
+  <%= @trade.interest %>
+</p>
+
+<p>
+  <strong>Total mv wac:</strong>
+  <%= @trade.total_mv_wac %>
+</p>
+
+<p>
+  <strong>Margin mv:</strong>
+  <%= @trade.margin_mv %>
+</p>
+
+<p>
+  <strong>Cash:</strong>
+  <%= @trade.cash %>
+</p>
+
+<p>
+  <strong>Target:</strong>
+  <%= @trade.target %>
+</p>
+
+<%= link_to 'Edit', edit_trade_path(@trade) %> |
+<%= link_to 'Back', trades_path %>

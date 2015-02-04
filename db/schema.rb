@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150129205531) do
+ActiveRecord::Schema.define(version: 20150203194956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150129205531) do
     t.integer  "target_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
   end
 
   add_index "agreements", ["lender_id"], name: "index_agreements_on_lender_id", using: :btree
@@ -59,6 +60,8 @@ ActiveRecord::Schema.define(version: 20150129205531) do
     t.boolean  "active",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "city"
+    t.string   "state"
   end
 
   create_table "signers", force: true do |t|
@@ -85,6 +88,29 @@ ActiveRecord::Schema.define(version: 20150129205531) do
   add_index "targets", ["borrower_id"], name: "index_targets_on_borrower_id", using: :btree
   add_index "targets", ["deal_id"], name: "index_targets_on_deal_id", using: :btree
 
+  create_table "trades", force: true do |t|
+    t.date     "trade_date",                                              null: false
+    t.date     "settlement_date",                                         null: false
+    t.boolean  "buy",                                      default: true, null: false
+    t.string   "cusip",                                                   null: false
+    t.integer  "pool",                                                    null: false
+    t.decimal  "coupon",          precision: 6,  scale: 3,                null: false
+    t.decimal  "original_face",   precision: 15, scale: 2
+    t.decimal  "current_face",    precision: 15, scale: 2
+    t.decimal  "factor",          precision: 9,  scale: 8
+    t.decimal  "price",           precision: 10, scale: 5
+    t.decimal  "market_value",    precision: 15, scale: 2
+    t.decimal  "interest",        precision: 15, scale: 2
+    t.decimal  "total_mv_wac",    precision: 15, scale: 2
+    t.decimal  "margin_mv",       precision: 15, scale: 2
+    t.decimal  "cash",            precision: 15, scale: 2
+    t.integer  "target_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "trades", ["target_id"], name: "index_trades_on_target_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -102,6 +128,7 @@ ActiveRecord::Schema.define(version: 20150129205531) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.boolean  "admin",                  default: false
+    t.integer  "lender_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

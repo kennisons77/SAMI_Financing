@@ -15,9 +15,14 @@ class Deal < ActiveRecord::Base
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
 
-  DISPLAY_COLS = ["collateral"=>"Collateral","term"=>"Term","active"=>"Active","agreements"=>"open Allocation Agreements"]
-  CHILD_COLS = ["create_deal"=>""]    
+  DISPLAY_COLS = {:collateral=>"Collateral", :term=>"Term", :target_count=>"Target Allocations", :active=>"Active"}
+  CHILD_COLS = {:agreements=>"Confirmed Allocation Agreements"}   
+   
   def title
-    "#{collateral}.-#{term}"
+    "#{self.collateral}.-#{self.term}"
+  end
+  
+  def target_count
+    Target.where(deal_id: self.id).count
   end
 end

@@ -6,6 +6,7 @@ class Signer < ActiveRecord::Base
   belongs_to :lender
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }  
-  
+
+  DISPLAY_COLS = [:last=>"Last Name",:first=>"First Name",:eamil=>"Email"]
   PARENT = ["lender"]
 end

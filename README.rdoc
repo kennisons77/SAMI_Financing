@@ -21,8 +21,10 @@ rails g scaffold Target amount:decimal yield:decimal fulfilled:decimal borrower:
 
 rails g scaffold Agreement amount:decimal fulfilled:decimal lender:references target:references 
 
-rails g scaffold Trade amount:decimal settlement_date:datetime agreement:references borrower:references
+rails g scaffold Trade trade_date:date settlement_date:date buy:boolean cusip:string pool:integer coupon:decimal original_face:decimal current_face:decimal factor:decimal price:decimal market_value:decimal interest:decimal total_mv_wac:decimal margin_mv:decimal cash:decimal target:references
 
+rails g scaffold Transaction pool:integer 
+ 
 rails g scaffold Document deal:references type:string title:string url:string 
 
 Controllers

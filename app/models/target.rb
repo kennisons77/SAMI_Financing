@@ -4,12 +4,13 @@ class Target < ActiveRecord::Base
   
   belongs_to :borrower
   belongs_to :deal
+  has_many :trades
   
-    DISPLAY_COLS = ["title"]
-    CHILD_COL = "active_deals"
-    PARENT = ["borrower","deal"]
+  DISPLAY_COLS = {:amount=>"Amount",:yield=>"Yield",:borrower=>"Borrower",:deal=>"Deal"}
+  CHILD_COL = {}
+  PARENT = ["borrower","deal"]
 
   def title
-    "#{amount} for #{self.deal.title}"
+    "#{self.amount} for #{self.deal.title}"
   end
 end

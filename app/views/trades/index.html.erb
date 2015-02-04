@@ -1,0 +1,55 @@
+<h1>Listing trades</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Trade date</th>
+      <th>Settlement date</th>
+      <th>Buy</th>
+      <th>Cusip</th>
+      <th>Pool</th>
+      <th>Coupon</th>
+      <th>Original face</th>
+      <th>Current face</th>
+      <th>Factor</th>
+      <th>Price</th>
+      <th>Market value</th>
+      <th>Interest</th>
+      <th>Total mv wac</th>
+      <th>Margin mv</th>
+      <th>Cash</th>
+      <th>Target</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trades.each do |trade| %>
+      <tr>
+        <td><%= trade.trade_date %></td>
+        <td><%= trade.settlement_date %></td>
+        <td><%= trade.buy %></td>
+        <td><%= trade.cusip %></td>
+        <td><%= trade.pool %></td>
+        <td><%= trade.coupon %></td>
+        <td><%= trade.original_face %></td>
+        <td><%= trade.current_face %></td>
+        <td><%= trade.factor %></td>
+        <td><%= trade.price %></td>
+        <td><%= trade.market_value %></td>
+        <td><%= trade.interest %></td>
+        <td><%= trade.total_mv_wac %></td>
+        <td><%= trade.margin_mv %></td>
+        <td><%= trade.cash %></td>
+        <td><%= trade.target %></td>
+        <td><%= link_to 'Show', trade %></td>
+        <td><%= link_to 'Edit', edit_trade_path(trade) %></td>
+        <td><%= link_to 'Destroy', trade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trade', new_trade_path %>

@@ -1,0 +1,81 @@
+<%= form_for(@trade) do |f| %>
+  <% if @trade.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trade.errors.count, "error") %> prohibited this trade from being saved:</h2>
+
+      <ul>
+      <% @trade.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :trade_date %><br>
+    <%= f.date_select :trade_date %>
+  </div>
+  <div class="field">
+    <%= f.label :settlement_date %><br>
+    <%= f.date_select :settlement_date %>
+  </div>
+  <div class="field">
+    <%= f.label :buy %><br>
+    <%= f.check_box :buy %>
+  </div>
+  <div class="field">
+    <%= f.label :cusip %><br>
+    <%= f.text_field :cusip %>
+  </div>
+  <div class="field">
+    <%= f.label :pool %><br>
+    <%= f.number_field :pool %>
+  </div>
+  <div class="field">
+    <%= f.label :coupon %><br>
+    <%= f.text_field :coupon %>
+  </div>
+  <div class="field">
+    <%= f.label :original_face %><br>
+    <%= f.text_field :original_face %>
+  </div>
+  <div class="field">
+    <%= f.label :current_face %><br>
+    <%= f.text_field :current_face %>
+  </div>
+  <div class="field">
+    <%= f.label :factor %><br>
+    <%= f.text_field :factor %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :market_value %><br>
+    <%= f.text_field :market_value %>
+  </div>
+  <div class="field">
+    <%= f.label :interest %><br>
+    <%= f.text_field :interest %>
+  </div>
+  <div class="field">
+    <%= f.label :total_mv_wac %><br>
+    <%= f.text_field :total_mv_wac %>
+  </div>
+  <div class="field">
+    <%= f.label :margin_mv %><br>
+    <%= f.text_field :margin_mv %>
+  </div>
+  <div class="field">
+    <%= f.label :cash %><br>
+    <%= f.text_field :cash %>
+  </div>
+  <div class="field">
+    <%= f.label :target_id %><br>
+    <%= f.text_field :target_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
