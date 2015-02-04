@@ -7,15 +7,15 @@ class CreateTrades < ActiveRecord::Migration
       t.string :cusip, null: false
       t.integer :pool, null: false
       t.decimal :coupon, precision: 6, scale: 3, null: false 
-      t.decimal :original_face, precision: 15, scale: 2
-      t.decimal :current_face, precision: 15, scale: 2
+      t.money :original_face, currency: { present: false }
+      t.money :current_face, currency: { present: false }
       t.decimal :factor, precision: 9, scale: 8
-      t.decimal :price, precision: 10, scale: 5 
-      t.decimal :market_value, precision: 15, scale: 2
-      t.decimal :interest, precision: 15, scale: 2 
-      t.decimal :total_mv_wac, precision: 15, scale: 2 
-      t.decimal :margin_mv, precision: 15, scale: 2
-      t.decimal :cash, precision: 15, scale: 2
+      t.money :price, currency: { present: false }
+      t.money :market_value, currency: { present: false }
+      t.money :interest, currency: { present: false }
+      t.money :total_mv_wac, currency: { present: false }
+      t.money :margin_mv, currency: { present: false }
+      t.money :cash, currency: { present: false }
       t.references :target, index: true
 
       t.timestamps

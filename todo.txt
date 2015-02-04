@@ -1,0 +1,20 @@
+TODO
+seed documents
+add docs to availoable table
+create uploader for docs
+
+link user and lender
+set page permissions
+creat admin exceptions
+
+create lender based available table form
+create agreement conformation form for user and admin
+
+create overviews for: deal>agreements, user>agreeements
+
+create activity table
+
+seed signers
+seed agreements
+seed trades
+

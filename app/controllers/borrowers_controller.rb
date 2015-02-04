@@ -45,14 +45,8 @@ class BorrowersController < InheritedResources::Base
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_borrower
-      @borrower = Borrower.find(params[:id])
-    end
-
-
     def borrower_params
-      params.require(:borrower).permit(:title)
+      params.require(:borrower).permit(:title, :city, :state)
     end
 end
 

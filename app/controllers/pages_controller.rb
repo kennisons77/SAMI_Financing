@@ -14,7 +14,7 @@ class PagesController < ApplicationController
     @sel_agreements = Agreements.where(:status=> nil)
   end
 
-  def allocation_report
-  add_breadcrumb "Allocation Report", 'pages/opportunities'
-  end
+  # def allocation_report
+  # add_breadcrumb "Allocation Report", 'pages/opportunities'
+  # end
 end
