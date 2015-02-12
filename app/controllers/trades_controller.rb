@@ -1,20 +1,25 @@
 class TradesController < ApplicationController
   before_action :set_trade, only: [:show, :edit, :update, :destroy]
+  respond_to :html
 
   # GET /trades
   # GET /trades.json
   def index
     @trades = Trade.all
+    respond_with(@trades)    
   end
 
   # GET /trades/1
   # GET /trades/1.json
   def show
+    respond_with(@trade)    
   end
 
   # GET /trades/new
   def new
     @trade = Trade.new
+    respond_with(@target,@trade)
+    
   end
 
   # GET /trades/1/edit
@@ -24,41 +29,22 @@ class TradesController < ApplicationController
   # POST /trades
   # POST /trades.json
   def create
-    @trade = Trade.new(trade_params)
-
-    respond_to do |format|
-      if @trade.save
-        format.html { redirect_to @trade, notice: 'Trade was successfully created.' }
-        format.json { render :show, status: :created, location: @trade }
-      else
-        format.html { render :new }
-        format.json { render json: @trade.errors, status: :unprocessable_entity }
-      end
-    end
+    @trade = @target.trades.new(trade_params)
+    @trade.save
+    respond_with(@target,@trade, :location => target_trades_url(@target))
   end
 
   # PATCH/PUT /trades/1
   # PATCH/PUT /trades/1.json
   def update
-    respond_to do |format|
-      if @trade.update(trade_params)
-        format.html { redirect_to @trade, notice: 'Trade was successfully updated.' }
-        format.json { render :show, status: :ok, location: @trade }
-      else
-        format.html { render :edit }
-        format.json { render json: @trade.errors, status: :unprocessable_entity }
-      end
-    end
+    respond_with(@target,@trade, :location => target_trades_url(@target))
   end
 
   # DELETE /trades/1
   # DELETE /trades/1.json
   def destroy
     @trade.destroy
-    respond_to do |format|
-      format.html { redirect_to trades_url, notice: 'Trade was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    respond_with(@target,@trade)
   end
 
   private

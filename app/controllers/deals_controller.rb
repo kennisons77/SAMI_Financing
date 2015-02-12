@@ -55,6 +55,6 @@ class DealsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def deal_params
-    params.require(:deal).permit(:collateral, :term, :active)
+    params.require(:deal).permit(:collateral, :term, :status)
   end
 end

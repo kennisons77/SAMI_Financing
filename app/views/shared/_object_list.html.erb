@@ -3,9 +3,9 @@
   <thead>
     <tr>
     <% unless objects.blank?  %>      
-      <% get_display_cols(objects[0]).map do |key, value| %>
-        <% unless value.capitalize == parent.class.name%> 
-        <th><%= value %></th>
+      <% get_display_cols(objects.first).map do |key, value| %>
+        <% unless key.capitalize == parent.class.name%> 
+        <th><%= key.to_s.humanize.capitalize %></th>
         <% end %>
       <% end %>
     <% end %>

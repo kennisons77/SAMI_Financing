@@ -1,5 +1,25 @@
-<h1>Allocation Report</h1>
+<h2>Trade Report  <%= " for trades settling on #{params['settlement_date']}" if params["settlement_date"]%></h2>
 
+<a data-dropdown="drop1" aria-controls="drop1" aria-expanded="false"  class="button dropdown small">Select Settlement Date</a>
+<ul id="drop1" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
+  <li><a href="#">All Data</a></li>
+<%= render(
+  partial: "shared/list_link", collection: @settlement_dates,
+  :locals => {:controller => 'targets', :action => "allocation", :cat =>"settlement_date"}) %>   
+</ul>
+
+<%= render(
+  partial: "shared/object_list",
+  :locals => {:objects => @trades, :parent=>@target}) %> 
+
+
+<h2>Allocation Report<%= " for settlement on #{params['settlement_date']}" if params["settlement_date"]%></h2>
+<dl>
+  <dt>NET BUY & SELLS  SEE <%=link_to "Trade Report", '' %> for details</dt>
+  <dd><h3>7,000</h3></dd>
+  <dt>Current Outstanding Balances as of <%=Time.now.strftime("%m-%d-%Y")%></dt>
+  <dd><h3> 89,605</h3></dd>  
+</dl>
 <table>
   <thead>
     <tr>

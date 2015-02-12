@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_action :model_name 
-  before_action :set_object, except: [:index, :create, :new]
+  before_action :set_object
   before_action :set_parent
   before_action :objects_crumb 
   before_action :object_crumb, only: :show
@@ -43,23 +43,27 @@ protected
 
   #Dynamically sets the object for the controller
   def set_object
-    object = Kernel.const_get(@@mname).find(params[:id])
-    instance_variable_set("@#{@@mname.downcase}", object)
+    if params.key?("id")   
+      object = Kernel.const_get(@@mname).find(params[:id])
+      instance_variable_set("@#{@@mname.downcase}", object)
+    end
   end
   
   #searches the Model:PARENT constant for a name that matches params with an id. The nsets an instance variable.
   def set_parent
-    if Kernel.const_get(@@mname)::PARENT
-      Kernel.const_get(@@mname)::PARENT.each do |parent|
-        if params.key?("#{parent}_id")
-          instance_variable_set("@parent_class", parent)
-          id = params["#{parent}_id"]
-          p_object = Kernel.const_get(parent.classify).find(id)
-          instance_variable_set("@#{parent.downcase}", p_object)
+    if Kernel.const_defined?@@mname
+      if Kernel.const_get(@@mname)::PARENT
+        Kernel.const_get(@@mname)::PARENT.each do |parent|
+          if params.key?("#{parent}_id")
+            instance_variable_set("@parent_class", parent)
+            id = params["#{parent}_id"]
+            p_object = Kernel.const_get(parent.classify).find(id)
+            instance_variable_set("@#{parent.downcase}", p_object)
+          end
         end
       end
     else
-      add_breadcrumb @@mname.pluralize.upcase, polymorphic_url(@@mname.pluralize)         
+      add_breadcrumb @@mname.pluralize.upcase, polymorphic_url(@@mname.pluralize)        
     end
   end
   

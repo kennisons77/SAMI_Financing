@@ -2,8 +2,16 @@ class TargetsController < ApplicationController
   
   respond_to :html
 
-  def allocation_report
-    @agreements = @target.agreements  
+  def allocation
+    add_breadcrumb "Allocation Report", ''        
+    @target= Target.find(params["id"])
+    @agreements = @target.agreements
+    if params["settlement_date"]  
+      @trades = @target.trades.where(:settlement_date=>params["settlement_date"])  
+    else
+      @trades = @target.trades  
+    end
+    @settlement_dates = Trade.where(target_id: @target.id).uniq.pluck(:settlement_date)
  
   end
 
@@ -81,9 +89,6 @@ class TargetsController < ApplicationController
       # end
     # end
     # Use callbacks to share common setup or constraints between actions.
-    def set_target
-      @target = Target.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def target_params

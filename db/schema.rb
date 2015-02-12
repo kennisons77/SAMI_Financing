@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204043602) do
+ActiveRecord::Schema.define(version: 20150209210615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20150204043602) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "status"
-    t.integer  "amount_cents",    default: 0, null: false
-    t.integer  "fulfilled_cents", default: 0, null: false
+    t.integer  "amount_cents",    limit: 8, default: 0, null: false
+    t.integer  "fulfilled_cents", limit: 8, default: 0, null: false
   end
 
   add_index "agreements", ["lender_id"], name: "index_agreements_on_lender_id", using: :btree
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20150204043602) do
     t.string   "collateral"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",     default: true, null: false
     t.integer  "term"
+    t.integer  "status"
   end
 
   create_table "documents", force: true do |t|
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20150204043602) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "amount_cents",                         default: 0, null: false
+    t.integer  "status",                               default: 0, null: false
   end
 
   add_index "targets", ["borrower_id"], name: "index_targets_on_borrower_id", using: :btree

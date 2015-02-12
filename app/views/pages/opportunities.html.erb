@@ -21,30 +21,31 @@
   <th colspan="4">Targeted Yield & Exposure per Borrower</th>
         <% @borrowers.each do |borrower| %>
             <td><%=number_to_percentage(borrower.targets.sum(:yield), precision: 2) %></td>
-            <td><%=number_to_currency(borrower.targets.sum(:amount), precision: 0)%></td>  
+            <td><%=number_to_currency(borrower.targets.map(&:amount).sum, precision: 0)%></td>  
             <td>[total]</td> 
         <% end %>
   
 </tfoot>
   <tbody class="text-right">
-    <% @deals.active.each do |deal| %>
-      <tr>
-        <td scope="row" class="text-left">[marketing]</td>
-        <td scope="row" class="text-left">[docs]</td>
-        <td scope="row" class="text-left"><%= deal.collateral %></td>
-        <td><%= deal.term %></td>
-        <% @borrowers.each do |borrower| %>
-          <% if target = borrower.targets.find_by_deal_id(deal.id) %>
-            <td><%=number_to_percentage(target.yield, precision: 2) %></td>
-            <td><%=number_to_currency(target.amount, precision: 0)%></td>  
-            <td><input type="text"  size="4"></td> 
-          <% else%>
-            <td></td>    
-            <td></td>    
-            <td></td>    
+   
+      <% @deals.active.each do |deal| %>
+        <tr>
+          <td scope="row" class="text-left">[marketing]</td>
+          <td scope="row" class="text-left">[docs]</td>
+          <td scope="row" class="text-left"><%= deal.collateral %></td>
+          <td><%= deal.term %></td>
+          <% @borrowers.each do |borrower| %>
+            <% if target = borrower.targets.find_by_deal_id(deal.id) %>
+              <td><%=number_to_percentage(target.yield, precision: 2) %></td>
+              <td><%=number_to_currency(target.amount, precision: 0)%></td>            
+              <td><%= text_field_tag("#{deal.id}-#{borrower.id}-amount") %></td>
+            <% else%>
+              <td></td>    
+              <td></td>    
+              <td></td>    
+            <% end%>
           <% end %>
-        <% end %>
-      </tr>
-    <% end %>
+        </tr>
+      <% end %>
   </tbody>
 </table>

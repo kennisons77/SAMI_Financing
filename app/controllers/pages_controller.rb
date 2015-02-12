@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!
   respond_to :html
-
+  skip_before_filter :set_parent
+  
   def opportunities
   add_breadcrumb "Investment Opportunities", 'pages/opportunities'
     @borrowers = Borrower.all
