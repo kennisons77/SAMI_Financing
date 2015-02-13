@@ -2,6 +2,7 @@ class Lender < ActiveRecord::Base
   include ActiveRecordExtension
   validates :title, :account, presence: true
   
+  belongs_to :user
   has_many :agreements
   has_many :targets, through: :agreements
   

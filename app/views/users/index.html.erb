@@ -1,0 +1,9 @@
+<h1>Listing users for <%=@target.title if @target%></h1>
+<%= render(
+  partial: "shared/object_list",
+  :locals => {:objects => @users, :parent=>nil}) %> 
+
+
+<br>
+
+<%= link_to 'New Agreement', new_user_path() %>

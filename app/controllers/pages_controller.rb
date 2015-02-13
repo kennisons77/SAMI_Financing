@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   respond_to :html
   skip_before_filter :set_parent
+  before_action :authenticate_user!
   
   def opportunities
   add_breadcrumb "Investment Opportunities", 'pages/opportunities'

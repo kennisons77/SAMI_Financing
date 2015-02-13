@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
+  before_action :authenticate_user!
+ 
   before_action :model_name 
   before_action :set_object
   before_action :set_parent
@@ -11,7 +13,14 @@ class ApplicationController < ActionController::Base
   before_action :edit_crumb, :only => [:edit, :update]
   before_action :new_crumb, :only => [:new, :create]
   before_action :delete_crumb,only: :delete
-    
+  #for devise
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  skip_before_action :set_parent, if: :devise_controller?
+  skip_before_action :objects_crumb, if: :devise_controller?
+  
+  def configure_permitted_parameters
+     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :lender_id, :email, :password) }
+  end   
   
 protected
   def objects_crumb

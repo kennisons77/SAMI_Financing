@@ -1,8 +1,8 @@
 <% unless cell.to_s.capitalize == parent.class.name%> 
     <% if object.has_attribute? "#{cell.to_s}_cents"%>
       <% value = humanized_money_with_symbol object.send(cell) -%>  
-    <%elsif cell.to_s.include? "_id"%>
-      <% value = cell.to_s.split("_id")[0].capitalize.constantize.find(object.send(cell)).title %>     
+    <%elsif cell.to_s.include? "_id" and object.send(cell)%>
+      <% value = cell.to_s.split("_id")[0].capitalize.constantize.find(object.send(cell)).title if object.send(cell).present? %>     
     <% else %>
       <% value = object.send(cell) %>
     <% end %>

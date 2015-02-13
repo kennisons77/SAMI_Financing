@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209210615) do
+ActiveRecord::Schema.define(version: 20150212214229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20150209210615) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "term"
-    t.integer  "status"
+    t.integer  "status",     default: 0
   end
 
   create_table "documents", force: true do |t|
@@ -130,6 +130,8 @@ ActiveRecord::Schema.define(version: 20150209210615) do
     t.datetime "confirmation_sent_at"
     t.boolean  "admin",                  default: false
     t.integer  "lender_id"
+    t.text     "first_name"
+    t.text     "last_name"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

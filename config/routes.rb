@@ -25,7 +25,9 @@ Rails.application.routes.draw do
   
   get 'pages/opportunities'
   get 'targets/:id/allocation'=> "targets#allocation"
-  devise_for :users, controllers: { sessions: "users/sessions" }
+  
+devise_for :users
+resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
