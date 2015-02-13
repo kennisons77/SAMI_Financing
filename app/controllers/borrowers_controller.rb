@@ -1,5 +1,5 @@
 class BorrowersController < InheritedResources::Base
- 
+    before_filter :verify_is_admin   
     respond_to :html
   # GET /borrowers
   # GET /borrowers.json

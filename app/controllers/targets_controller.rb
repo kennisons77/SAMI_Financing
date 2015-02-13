@@ -1,5 +1,5 @@
 class TargetsController < ApplicationController
-  
+  before_filter :verify_is_admin, :except => :allocation
   respond_to :html
 
   def allocation

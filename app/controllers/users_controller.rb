@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   skip_before_action :set_parent
-    respond_to :html
-
-
+  before_filter :verify_is_admin
+  respond_to :html
+  
   # GET /users
   # GET /users.json
   def index
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
- end
+  end
 
   # POST /users
   # POST /users.json
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     if params[:user][:password].blank?
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
-    end    
+    end
     @user.update(user_params)
     respond_with(@user)
   end
@@ -54,8 +54,8 @@ class UsersController < ApplicationController
 
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :lender_id, :email, :password)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :lender_id, :email, :password)
+  end
 end

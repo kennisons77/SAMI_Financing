@@ -1,4 +1,5 @@
 class LendersController < ApplicationController
+    before_filter :verify_is_admin  
     respond_to :html
 
   # GET /lenders

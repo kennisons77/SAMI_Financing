@@ -1,5 +1,6 @@
 class TradesController < ApplicationController
   before_action :set_trade, only: [:show, :edit, :update, :destroy]
+  before_action :verify_is_admin
   respond_to :html
 
   # GET /trades
