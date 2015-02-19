@@ -19,13 +19,15 @@ Rails.application.routes.draw do
     resources :signers
   end
 
+  resources :agreements
   resources :targets
   resources :trades
   resources :pages
   
   get 'pages/opportunities'
+  #get 'agreements/opportunities' => "agreements#opportunities"
   get 'targets/:id/allocation'=> "targets#allocation"
-  
+  post 'pages/agreement_confirmation'=> 'pages#agreement_confirmation'
 devise_for :users
 resources :users
   # The priority is based upon order of creation: first created -> highest priority.

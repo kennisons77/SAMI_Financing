@@ -22,7 +22,12 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-
+  def get_lender
+    unless current_user.admin?
+      @lender = Lender.find(current_user.lender_id)
+    end
+  end
+  
   def objects_crumb
     add_breadcrumb
     if @parent_class

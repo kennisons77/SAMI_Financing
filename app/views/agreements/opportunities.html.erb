@@ -27,7 +27,7 @@
 
   </tfoot>
   <tbody class="text-right">
-    <%= form_tag "pages/agreement_confirmation" %>
+    <%= form_tag agreements_update_path do %>
       <% @deals.active.each do |deal| %>
       <tr>
         <td scope="row" class="text-left">[marketing]</td>
@@ -36,19 +36,22 @@
         <td><%= deal.term %></td>
         <% @borrowers.each do |borrower| %>
           <% if target = borrower.targets.find_by_deal_id(deal.id) %>
-            <td><%= number_to_percentage(target.yield, precision: 2) %></td>
-            <td><%= number_to_currency(target.amount, precision: 0)%></td>
-            <td>
-                  <%= fields_for "agreement[#{target.id}]", @agreements[target.id] do |agreement| %>
-                     <%= agreement.hidden_field :id %>
-                     <%= agreement.text_field :amount %>
-                  <% end%>
-            </td>
+          <td><%= number_to_percentage(target.yield, precision: 2) %></td>
+          <td><%= number_to_currency(target.amount, precision: 0)%></td>
+          <td>
+            <%= fields_for 'agreement[user][deal][borrower]' do |agreement_form| %>
+              <%= agreement_form.text_field :amount %>
+            <% end %>            
+            <%= text_field_tag("#{deal.id}-#{borrower.id}-amount") %>
+          </td>
           <% else%>
-            <td class="grey" colspan="3">[not available]</td>
+          <td></td>
+          <td></td>
+          <td></td>
           <% end%>
         <% end %>
       </tr>
       <% end %>
+    <% end %>
   </tbody>
 </table>

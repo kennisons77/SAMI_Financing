@@ -1,6 +1,13 @@
 class AgreementsController < ApplicationController
     respond_to :html
+    skip_before_action :set_parent, :only => :opportunities
 
+  def opportunities
+    #add_breadcrumb "Investment Opportunities", 'agreements/opportunities'
+    @agreements = []
+    @borrowers = Borrower.all
+    @deals = Deal.active
+  end
 
   # GET /agreements
   # GET /agreements.json
