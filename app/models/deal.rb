@@ -24,4 +24,5 @@ class Deal < ActiveRecord::Base
   def target_count
     Target.where(deal_id: self.id).count
   end
+  
 end

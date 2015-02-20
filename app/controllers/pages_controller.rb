@@ -5,13 +5,15 @@ class PagesController < ApplicationController
   before_action :get_lender
   def opportunities
     add_breadcrumb "Investment Opportunities", 'pages/opportunities'
+    @borrowers_array = Borrower.all.map(&:id)
     @agreements = []
     @borrowers = Borrower.all
     @deals = Deal.active
+    @target_data = []
     @deals.each do |deal|
       @borrowers.each do |borrower|
         if borrower.targets.find_by_deal_id(deal.id)
-          target =borrower.targets.find_by_deal_id(deal.id)
+          target = borrower.targets.find_by_deal_id(deal.id)
             @agreements[target.id] = Agreement.find_or_create_by(lender_id: @lender.id, target_id: target.id)
         end
       end

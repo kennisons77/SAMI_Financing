@@ -1,3 +1,42 @@
 a.button {
     color:#fff
   }
+  
+td.grey {
+  font-style: italic;
+  text-align:center;
+}
+
+td.lborder, th.lborder {
+  border-left: 3px solid #ccc;
+}
+td.rborder, th.rborder {
+  border-right: 3px solid #fff
+}
+
+tr.summary{
+  
+  td, th {
+    line-height:3em;
+    border-top: 1px solid #666;
+  }
+}
+
+tr.summary {
+input[type="text"]:disabled {
+  font-size: inherit;
+  font-weight: bold;
+  border:none;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;  
+  background:transparent;
+  color: #333;
+  margin:0;
+  Padding:0;
+}}
+table {
+  tr:first-child{
+    white-space: nowrap
+  }
+}

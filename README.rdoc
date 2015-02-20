@@ -7,6 +7,12 @@ application up and running.
 
 Things you may want to cover:
 
+VENDOR ASSETS
+responisve tables
+http://zurb.com/playground/responsive-tables
+jquery calculation
+http://www.pengoworks.com/workshop/jquery/calculation/calculation.plugin.htm
+
 Objects
 
 rails g scaffold Borrower title:string
