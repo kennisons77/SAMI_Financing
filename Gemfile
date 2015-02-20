@@ -62,3 +62,7 @@ group :test do
   gem 'wdm', '>= 0.1.0'
   gem 'faker', '~> 1.4.3'  
 end
+
+group :production do
+  gem 'rails_12factor'
+end 
