@@ -1,7 +1,7 @@
 class ChangeAmountsToBigint < ActiveRecord::Migration
   def self.up
     change_column :agreements, :amount_cents, :bigint    
-    change_column :agreements, :fullfilled_cents, :bigint    
+    change_column :agreements, :fulfilled_cents, :bigint    
     change_column :targets, :amount_cents, :bigint    
     change_column :trades, :original_face_cents, :bigint    
     change_column :trades, :current_face_cents, :bigint    
@@ -14,7 +14,7 @@ class ChangeAmountsToBigint < ActiveRecord::Migration
   
   def self.down
     change_column :agreements, :amount_cents, :integer    
-    change_column :agreements, :fullfilled_cents, :integer    
+    change_column :agreements, :fulfilled_cents, :integer    
     change_column :targets, :amount_cents, :integer    
     change_column :trades, :original_face_cents, :integer    
     change_column :trades, :current_face_cents, :integer    
