@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212214229) do
+ActiveRecord::Schema.define(version: 20150220220244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,34 +77,34 @@ ActiveRecord::Schema.define(version: 20150212214229) do
   add_index "signers", ["lender_id"], name: "index_signers_on_lender_id", using: :btree
 
   create_table "targets", force: true do |t|
-    t.decimal  "yield",        precision: 7, scale: 2,             null: false
+    t.decimal  "yield",                  precision: 7, scale: 2,             null: false
     t.integer  "borrower_id"
     t.integer  "deal_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "amount_cents",                         default: 0, null: false
-    t.integer  "status",                               default: 0, null: false
+    t.integer  "amount_cents", limit: 8,                         default: 0, null: false
+    t.integer  "status",                                         default: 0, null: false
   end
 
   add_index "targets", ["borrower_id"], name: "index_targets_on_borrower_id", using: :btree
   add_index "targets", ["deal_id"], name: "index_targets_on_deal_id", using: :btree
 
   create_table "trades", force: true do |t|
-    t.date     "trade_date",                                                 null: false
-    t.date     "settlement_date",                                            null: false
-    t.boolean  "buy",                                         default: true, null: false
-    t.string   "cusip",                                                      null: false
-    t.integer  "pool",                                                       null: false
-    t.decimal  "coupon",              precision: 6, scale: 3,                null: false
-    t.integer  "original_face_cents",                         default: 0,    null: false
-    t.integer  "current_face_cents",                          default: 0,    null: false
-    t.decimal  "factor",              precision: 9, scale: 8
-    t.integer  "price_cents",                                 default: 0,    null: false
-    t.integer  "market_value_cents",                          default: 0,    null: false
-    t.integer  "interest_cents",                              default: 0,    null: false
-    t.integer  "total_mv_wac_cents",                          default: 0,    null: false
-    t.integer  "margin_mv_cents",                             default: 0,    null: false
-    t.integer  "cash_cents",                                  default: 0,    null: false
+    t.date     "trade_date",                                                           null: false
+    t.date     "settlement_date",                                                      null: false
+    t.boolean  "buy",                                                   default: true, null: false
+    t.string   "cusip",                                                                null: false
+    t.integer  "pool",                                                                 null: false
+    t.decimal  "coupon",                        precision: 6, scale: 3,                null: false
+    t.integer  "original_face_cents", limit: 8,                         default: 0,    null: false
+    t.integer  "current_face_cents",  limit: 8,                         default: 0,    null: false
+    t.decimal  "factor",                        precision: 9, scale: 8
+    t.integer  "price_cents",                                           default: 0,    null: false
+    t.integer  "market_value_cents",  limit: 8,                         default: 0,    null: false
+    t.integer  "interest_cents",      limit: 8,                         default: 0,    null: false
+    t.integer  "total_mv_wac_cents",  limit: 8,                         default: 0,    null: false
+    t.integer  "margin_mv_cents",     limit: 8,                         default: 0,    null: false
+    t.integer  "cash_cents",          limit: 8,                         default: 0,    null: false
     t.integer  "target_id"
     t.datetime "created_at"
     t.datetime "updated_at"
