@@ -83,9 +83,5 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: d8hmmuoqan9u3g
-  username: bjgokcxazctqgt
-  password: BDGEi0rf_ANdeqagjsi4MurC9i
-  port: 5432  
+  url: postgres://bjgokcxazctqgt:BDGEi0rf_ANdeqagjsi4MurC9i@ec2-107-21-93-97.compute-1.amazonaws.com:5432/d8hmmuoqan9u3g
 
