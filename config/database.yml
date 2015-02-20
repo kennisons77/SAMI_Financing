@@ -84,6 +84,8 @@ test:
 #
 production:
   <<: *default
-  database: sami_financing_production
-  username: sami_financing
-  password: <%= ENV['SAMI_FINANCING_DATABASE_PASSWORD'] %>
+  database: d8hmmuoqan9u3g
+  username: bjgokcxazctqgt
+  password: BDGEi0rf_ANdeqagjsi4MurC9i
+  port: 5432  
+

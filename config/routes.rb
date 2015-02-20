@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'pages#opportunities'
 
   resources :borrowers do
     resources :targets, shallow: true
@@ -34,7 +35,6 @@ resources :users
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'pages#opportunities'
 
 # Example of regular route:
 #   get 'products/:id' => 'catalog#view'
