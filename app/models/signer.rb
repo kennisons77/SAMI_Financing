@@ -7,6 +7,6 @@ class Signer < ActiveRecord::Base
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }  
 
-  DISPLAY_COLS = [:last=>"Last Name",:first=>"First Name",:eamil=>"Email"]
+  DISPLAY_COLS = {:last=>"Last Name",:first=>"First Name",:eamil=>"Email"}
   PARENT = ["lender"]
 end

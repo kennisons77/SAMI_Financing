@@ -9,6 +9,6 @@ class Lender < ActiveRecord::Base
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
   
-  DISPLAY_COLS = [:title=>"Title",:account=>"Account #"]
+  DISPLAY_COLS = {:title=>"Title",:account=>"Account #"}
 
 end

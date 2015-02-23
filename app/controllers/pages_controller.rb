@@ -10,6 +10,7 @@ class PagesController < ApplicationController
     @borrowers = Borrower.all
     @deals = Deal.active
     @target_data = []
+    unless current_user.admin?
     @deals.each do |deal|
       @borrowers.each do |borrower|
         if borrower.targets.find_by_deal_id(deal.id)
@@ -17,6 +18,7 @@ class PagesController < ApplicationController
             @agreements[target.id] = Agreement.find_or_create_by(lender_id: @lender.id, target_id: target.id)
         end
       end
+    end
     end
   end
 
