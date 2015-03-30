@@ -1,5 +1,3 @@
-    <div class="row">
-      <div class="small-12 columns">
         <%= javascript_tag do %>
 var borrowers_ar = <%= j @borrowers_array.to_json %>
 <% end%>
@@ -93,8 +91,7 @@ var borrowers_ar = <%= j @borrowers_array.to_json %>
           <%= submit_tag("Confirm") %>
       </li>
     </ul>
-  </div>
-</div>
+
 <% end%>
 <% end%>
 
