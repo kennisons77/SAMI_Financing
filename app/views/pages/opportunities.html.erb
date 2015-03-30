@@ -1,8 +1,12 @@
-<%= javascript_tag do %>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= javascript_tag do %>
 var borrowers_ar = <%= j @borrowers_array.to_json %>
 <% end%>
 
-<h1>Investment Opportunities</h1>
+<h2>Investment Opportunities<%= " for #{@lender.title}" unless current_user.admin?%></h2>
+<p>Listed below are the the available opportunities for investment.</p>
+
 <%= form_tag "pages/agreement_confirmation" do %>
 
 <table class="responsive"  style="border-spacing: 0">
@@ -32,7 +36,7 @@ var borrowers_ar = <%= j @borrowers_array.to_json %>
       <% @borrowers.each do |borrower| %>
       <td class="lborder"><%= number_to_percentage(borrower.targets.pluck('sum(yield * amount_cents) / sum(amount_cents)').first, precision: 2) %></td>
       <td>$<%= number_to_human(borrower.targets.map(&:amount).sum, precision: 0)%></td>
-      <td><input type="text" id="total_<%= borrower.id%>" value = 5 disabled/><span id="total_<%= borrower.id%>" /></td>
+      <td><input type="text" id="total_<%= borrower.id%>"  disabled/><span id="total_<%= borrower.id%>" /></td>
       <% end %>
     </tr>
   </tfoot>
@@ -41,16 +45,24 @@ var borrowers_ar = <%= j @borrowers_array.to_json %>
     <tr>
       <td scope="row" class="text-left"><%= deal.collateral %></td>
       <td><%= "1 " unless deal.term == "overnight"%><%= deal.term.capitalize   %></td>
-      <td scope="row" class="text-left">[marketing]</td>
-      <td scope="row" class="text-left">[docs]</td>
+      <td scope="row" class="text-left"><%=link_to "Deal Summary",""%></td>
+      <td scope="row" class="text-left"><%=link_to "Funding Agreement",""%></td>
 
       <% @borrowers.each do |borrower| %>
       <% if target = borrower.targets.find_by_deal_id(deal.id) %>
-      <td class="lborder"><%= number_to_percentage(target.yield, precision: 2) %></td>
-      <td>$<%= number_to_human(target.amount, precision: 0)%></td>
-      <td> <%= fields_for "agreement[#{borrower.id}][#{target.id}]", @agreements[target.id] do |agreement| %>
-      <%= agreement.text_field :amount,  { size: 38, class: "borrower" } %>
-      <% end%> </td>
+        <td class="lborder"><%= number_to_percentage(target.yield, precision: 2) %></td>
+        <td>$<%= number_to_human(target.amount, precision: 0)%></td>
+        <td><% unless current_user.admin?%> 
+          <%= fields_for "agreement[#{borrower.id}][#{@agreements[target.id].id}]", @agreements[target.id] do |agreement|  %>
+          <% if @agreements[target.id].status.nil? or @agreements[target.id].status == "selected"%>
+            <%= agreement.text_field :amount,  { size: 38, class: "borrower" } %>
+            <% else %>
+              Previous Agreement:            
+             <%= agreement.text_field :amount,  { size: 38, class: "borrower", :disabled => true } %>             
+            <% end%> 
+        <% end%> 
+        <% end%> 
+        </td>
       <% else%>
       <td colspan=3 class="grey lborder">Not Available</td>
       <% end%>
@@ -59,8 +71,11 @@ var borrowers_ar = <%= j @borrowers_array.to_json %>
     <% end %>
   </tbody>
 </table>
+</div>
+</div>
+<% unless current_user.admin?%>
 <div class="row">
-  <div class=" small-6 columns">
+  <div class=" small-8 columns">
     <ul class="pricing-table">
       <li class="title">
         Totals
@@ -69,10 +84,10 @@ var borrowers_ar = <%= j @borrowers_array.to_json %>
         Total Targeted Exposure $<strong id="totalSum"></strong>
       </li>
       <li class="bullet-item">
-        Weighted Average Yield $99.99
+        Weighted Average Yield 0.00%
       </li>
       <li class="bullet-item">
-        Weighted Average Term (days) $99.99
+        Weighted Average Term (days) 0
       </li>
       <li class="cta-button">
           <%= submit_tag("Confirm") %>
@@ -80,5 +95,6 @@ var borrowers_ar = <%= j @borrowers_array.to_json %>
     </ul>
   </div>
 </div>
+<% end%>
 <% end%>
 

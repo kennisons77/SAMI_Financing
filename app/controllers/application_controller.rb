@@ -77,7 +77,7 @@ class ApplicationController < ActionController::Base
         end
       end
     else
-      add_breadcrumb @@mname.pluralize.upcase, polymorphic_url(@@mname.pluralize)
+      add_breadcrumb @@mname.pluralize.upcase, polymorphic_path(@@mname.downcase.pluralize)
     end
   end
 

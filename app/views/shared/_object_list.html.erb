@@ -1,9 +1,11 @@
 <% unless objects.empty?%>
+<% cols =  get_display_cols(objects.first) %>
+<%  %>
 <table>
   <thead>
     <tr>
     <% unless objects.blank?  %>      
-      <% get_display_cols(objects.first).map do |key, value| %>
+      <% @cols.each do |key, value| %>
         <% unless key.capitalize == parent.class.name%> 
         <th><%= key.to_s.humanize.capitalize %></th>
         <% end %>
@@ -19,7 +21,7 @@
         <tr>          
           <%= render(
             partial:  "shared/cell",
-            collection: get_display_cols(object).keys,
+            collection: @cols.keys,
             locals: {:object=> object,:parent => parent }) %>              
             <td>
               <%= link_to 'E', edit_polymorphic_url([parent,object]) %>

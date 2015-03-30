@@ -74,9 +74,19 @@
       </section>
     </nav>
     <!-- ----------------------------------------Breadcrumbs-->
-
-    <% if @breadcrumbs %>
     <ul class="breadcrumbs">
+    <% if user_signed_in? %>
+    <li>
+        <a href="#" class="button small secondary split">Signed in as <%= current_user.email %> <span data-dropdown="drop"></span></a>
+        <br>
+        <ul id="drop" class="f-dropdown " data-dropdown-content>
+          <li>
+            <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+          </li>
+        </ul>
+        </li>
+    <% end %>
+    <% if @breadcrumbs %>
       <% @breadcrumbs[0..-2].each do |txt, path| %>
       <li>
         <%= link_to(h(txt), path) %>
@@ -85,9 +95,9 @@
       <li>
         <%= h(@breadcrumbs.last.first) %>
       </li>
-    </ul>
     <% end %>
-    
+      </ul>
+  
     <div class="row">
         <div class="small-12 columns">      
         <%= content_tag(:div, flash[:alert] , class: "alert-box warning radius")if flash[:alert]%>
@@ -96,27 +106,13 @@
         </div>
     </div>    
     
-    <% if user_signed_in? %>
-    <div class="row">
-      <div class="small-12 columns">
-        <a href="#" class="button tiny secondary split">Signed in as <%= current_user.email %> <span data-dropdown="drop"></span></a>
-        <br>
-        <ul id="drop" class="f-dropdown " data-dropdown-content>
-          <li>
-            <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <% end %>
+
 
     <!-- ----------------------------------------Content-->
 
-    <div class="row">
-      <div class="small-12 columns">
+
         <%= yield %>
-      </div>
-    </div>
+
 
     <%= javascript_include_tag "application" %>
   </body>

@@ -10,7 +10,7 @@ creat admin exceptions
 create lender based available table form
 create agreement conformation form for user and admin
 
-create overviews for: deal>agreements, user>agreeements
+create overviews for: deal>agreements, user>agreements
 
 create activity table
 

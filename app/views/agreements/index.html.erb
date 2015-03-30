@@ -5,5 +5,6 @@
 
 
 <br>
-
-<%= link_to 'New Agreement', new_target_agreement_path(@target) %>
+<% if @target%>
+  <%= link_to 'New Agreement', new_target_agreement_path(@target) %>
+  <%end%>

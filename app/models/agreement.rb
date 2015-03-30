@@ -5,17 +5,19 @@ class Agreement < ActiveRecord::Base
   
   validates :amount, :fulfilled, presence: true
 
-  enum status: [ :selected, :confirmed, :rejected ]
+  enum status: [ :selected, :confirmed, :rejected, :fullfilled ]
   
   belongs_to :lender
   belongs_to :target
   
-  scope :selected, -> { where(status: statuses[:confirmed]) }
-  scope :confirmed, -> { where(status: statuses[:selected]) }
+  scope :selected, -> { where(status: statuses[:selected]) }
+  scope :confirmed, -> { where(status: statuses[:confirmed]) }
   scope :rejected, -> { where(status: statuses[:rejected]) }
-  scope :submitted, -> { where(status: nil)}
+  scope :fullfilled, -> { where(status: statuses[:fullfilled]) }
+  scope :empty, -> { where(amount_cents: 0)}
+  scope :not_empty, -> { where("amount_cents > 0")}
     
-  DISPLAY_COLS = {:amount => "Agreement Amount",:fulfilled => "Amount Fulfilled",:lender_id => "Lender"}
+  DISPLAY_COLS = {:amount => "Agreement Amount",:fulfilled => "Amount Fulfilled",:lender_id => "Lender",:status=>"Status",:lender=>"Lender",:target=>"Target"}
   PARENT = ["lender","target"]
   
   def title
@@ -29,5 +31,6 @@ class Agreement < ActiveRecord::Base
   def capacity
     self.amount-self.fulfilled
   end  
+    
 end
   

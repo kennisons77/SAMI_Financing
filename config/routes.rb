@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root 'pages#opportunities'
 
   resources :borrowers do
     resources :targets, shallow: true
@@ -23,9 +22,10 @@ Rails.application.routes.draw do
   resources :agreements
   resources :targets
   resources :trades
-  resources :pages
+
   
-  get 'pages/opportunities'
+  get '/opportunities' => 'pages#opportunities', as: 'opportunities'
+  get '/home' => 'pages#home', as: 'home'
   #get 'agreements/opportunities' => "agreements#opportunities"
   get 'targets/:id/allocation'=> "targets#allocation"
   post 'pages/agreement_confirmation'=> 'pages#agreement_confirmation'
@@ -84,4 +84,6 @@ resources :users
 #     # (app/controllers/admin/products_controller.rb)
 #     resources :products
 #   end
+  root 'pages#opportunities'
+
 end

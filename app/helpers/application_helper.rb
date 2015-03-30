@@ -15,9 +15,7 @@ module ApplicationHelper
          cols = cols.merge(object.class::CHILD_COLS)
        end
       @cols = cols
-      return cols
     end
   end
-  
 
 end

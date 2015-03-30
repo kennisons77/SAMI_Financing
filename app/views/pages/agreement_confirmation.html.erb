@@ -1,0 +1,21 @@
+<div class="row">
+      <div class="small-12 columns">
+
+<h1>Listing selected agreements for <%= @lender.title%></h1>
+<p>The following agreements have been sellected but not cofirmed. Pleae click Confirm Agreements in order to verify the agreements listed below and submit them for funding.</p>
+<h2>P Allocation Agreement</h2>
+<%= form_tag "pages/agreement_confirmation" do %>
+<%= render(
+partial: "shared/object_list",
+:locals => {:objects => @sel_agreements, :parent=>nil}) %>
+<%= submit_tag("Confirm Agreements") %>
+<% end %>
+<br />
+<h2>Confirmed Allocation Agreement</h2>
+<p>The following agreements have been previously approved by Shay.</p>
+
+<%= render(
+partial: "shared/object_list",
+:locals => {:objects => @conf_agreements, :parent=>nil}) %>
+</div>
+</div>
