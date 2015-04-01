@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
+  before_action :get_lender
   before_action :model_name
   before_action :set_object
   before_action :set_parent

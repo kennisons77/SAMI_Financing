@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Signer', new_signer_path %>
+<%= link_to 'New Signer', new_lender_signer_path unless current_user.admin?%>

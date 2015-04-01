@@ -71,6 +71,8 @@ var borrowers_ar = <%= j @borrowers_array.to_json %>
 </table>
 </div>
 </div>
+<% end%>
+
 <% unless current_user.admin?%>
 <div class="row">
   <div class=" small-8 columns">
@@ -92,6 +94,5 @@ var borrowers_ar = <%= j @borrowers_array.to_json %>
       </li>
     </ul>
 
-<% end%>
 <% end%>
 

@@ -24,8 +24,8 @@
             collection: @cols.keys,
             locals: {:object=> object,:parent => parent }) %>              
             <td>
-              <%= link_to 'E', edit_polymorphic_url([parent,object]) %>
-              <%= link_to 'D', polymorphic_url([parent,object]), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Edit', edit_polymorphic_url([parent,object],:class=>'button') %>
+              <%= link_to 'Destroy', polymorphic_url([parent,object]), method: :delete, data: { confirm: 'Are you sure?' }.:class=>'button' %>
             </td>
         </tr>
       <% end %>             
