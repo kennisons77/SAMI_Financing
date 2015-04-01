@@ -28,13 +28,13 @@ seed_data = [
     [:title=>"SCentral Bank",:state=>"TX", :account=>1040678300]
   ],
   "Target" => [
-    [:yield=>"0.70",:borrower_id=>0,:deal_id=>0,:amount_cents=>1000000000,:status=>0],
-    [:yield=>"0.80",:borrower_id=>0,:deal_id=>1,:amount_cents=>500000000,:status=>0],
-    [:yield=>"1.50",:borrower_id=>0,:deal_id=>2,:amount_cents=>500000000,:status=>0],
-    [:yield=>"0.70",:borrower_id=>1,:deal_id=>1,:amount_cents=>500000000,:status=>0],
-    [:yield=>"0.50",:borrower_id=>1,:deal_id=>3,:amount_cents=>1000000000,:status=>0],
-    [:yield=>"0.55",:borrower_id=>1,:deal_id=>4,:amount_cents=>500000000,:status=>0],
-    [:yield=>"1.50",:borrower_id=>2,:deal_id=>5,:amount_cents=>500000000,:status=>0],
+    [:yield=>"0.70",:borrower_id=>1,:deal_id=>1,:amount_cents=>1000000000,:status=>0],
+    [:yield=>"0.80",:borrower_id=>1,:deal_id=>2,:amount_cents=>500000000,:status=>0],
+    [:yield=>"1.50",:borrower_id=>1,:deal_id=>3,:amount_cents=>500000000,:status=>0],
+    [:yield=>"0.70",:borrower_id=>2,:deal_id=>2,:amount_cents=>500000000,:status=>0],
+    [:yield=>"0.50",:borrower_id=>2,:deal_id=>4,:amount_cents=>1000000000,:status=>0],
+    [:yield=>"0.55",:borrower_id=>2,:deal_id=>5,:amount_cents=>500000000,:status=>0],
+    [:yield=>"1.50",:borrower_id=>3,:deal_id=>6,:amount_cents=>500000000,:status=>0],
   ],
   "Trade" => [
     [:trade_date =>  Date.strptime("2014,11,26", "%Y,%m,%d"), :settlement_date =>  Date.strptime("2014,12,18", "%Y,%m,%d"), :buy => 1, :cusip => "83164GXS6", :pool => "SBA # 506089", :coupon => "0.04", :original_face => "2000000.00", :current_face => "198944.50", :factor => "0.10", :price => "106.00", :market_value => "210881.17", :interest => "340.55", :total_mv_wac => "211221.72", :margin_mv => "202770.36", :cash =>"200000.00"],
